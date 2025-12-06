@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="fa">
+<head>
+<meta charset="UTF-8">
+<title>پنل مدیر</title>
+<link href="https://fonts.googleapis.com/css2?family=Vazirmatn&display=swap" rel="stylesheet">
+<style>
+  body{margin:0;padding:0;font-family:'Vazirmatn',sans-serif;background:linear-gradient(135deg,#d3c3ff,#c3ffe6);display:flex;justify-content:center;align-items:center;height:100vh;}
+  .card{background:white;padding:30px;border-radius:20px;box-shadow:0 15px 25px rgba(0,0,0,0.2);width:350px;text-align:right;animation:fadeIn 1s ease;}
+  h2,h3{text-align:center;}
+  ul{padding:0;list-style:none;}
+  li{padding:10px;margin:8px 0;background:#f0f0f0;border-radius:12px;transition:0.3s;cursor:pointer;}
+  li:hover{transform:scale(1.03);background:#e0e0ff;}
+  button{padding:10px 20px;border:none;border-radius:12px;background:#333;color:white;font-weight:bold;margin-top:20px;cursor:pointer;transition:0.3s;}
+  button:hover{transform:scale(1.05);}
+  @keyframes fadeIn{0%{opacity:0;transform:translateY(-20px);}100%{opacity:1;transform:translateY(0);}}
+</style>
+</head>
+<body>
+<div class="card">
+  <h2>پنل مدیر</h2>
+  <h3>لیست نقش‌ها:</h3>
+  <ul id="roleList"></ul>
+  <button onclick="back()">بازگشت</button>
+</div>
+
+<script>
+const roles=["جاسوس 👤","کارآگاه 🔍","رهبر تیم 🧠","شهروند 🧑‍🤝‍🧑","تک تیرانداز 🎯","مراقب 👁️","پزشک 💉"];
+const ul=document.getElementById('roleList');
+roles.forEach(r=>{
+  let li=document.createElement('li');
+  li.innerText=r;
+  ul.appendChild(li);
+});
+function back(){window.location.href='index.html';}
+</script>
+</body>
+</html>

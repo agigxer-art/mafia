@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="fa">
+<head>
+<meta charset="UTF-8">
+<title>پنل کاربر</title>
+<link href="https://fonts.googleapis.com/css2?family=Vazirmatn&display=swap" rel="stylesheet">
+<style>
+  body{margin:0;padding:0;font-family:'Vazirmatn',sans-serif;background:linear-gradient(135deg,#ffe6c3,#ffc3c3);display:flex;justify-content:center;align-items:center;height:100vh;}
+  .card{background:white;padding:30px;border-radius:20px;box-shadow:0 15px 25px rgba(0,0,0,0.2);width:320px;text-align:center;animation:fadeIn 1s ease;}
+  button{padding:12px 25px;border:none;border-radius:12px;background:#FF5722;color:white;font-weight:bold;font-size:16px;margin-top:10px;cursor:pointer;transition:0.3s;}
+  button:hover{transform:scale(1.05);}
+  #roleCard{background:#f0f0f0;padding:20px;margin-top:20px;border-radius:15px;min-height:50px;display:flex;align-items:center;justify-content:center;font-size:18px;font-weight:bold;transition:0.5s;transform-style:preserve-3d;}
+  #timerBar{height:6px;background:#2196F3;width:100%;border-radius:6px;margin-top:20px;transition:width linear;}
+  @keyframes fadeIn{0%{opacity:0;transform:translateY(-20px);}100%{opacity:1;transform:translateY(0);}}
+</style>
+</head>
+<body>
+<div class="card">
+  <h2>پنل کاربر</h2>
+  <button onclick="pickRole()">🎯 دریافت نقش رندوم</button>
+  <div id="roleCard">نقش شما هنوز انتخاب نشده</div>
+  <div id="timerBar"></div>
+</div>
+
+<script>
+const roles = ["جاسوس 👤","کارآگاه 🔍","رهبر تیم 🧠","شهروند 🧑‍🤝‍🧑","تک تیرانداز 🎯","مراقب 👁️","پزشک 💉"];
+let picked=false;
+let timeLeft=90; // 1 دقیقه و 30 ثانیه
+let timerInterval;
+
+function pickRole(){
+  if(picked) return;
+  picked=true;
+  let r=roles[Math.floor(Math.random()*roles.length)];
+  const card=document.getElementById('roleCard');
+  card.innerText="نقش شما: "+r;
+  card.style.transform="rotateY(360deg)";
+  startTimer();
+}
+
+function startTimer(){
+  const bar=document.getElementById('timerBar');
+  bar.style.width="100%";
+  timerInterval=setInterval(()=>{
+    timeLeft--;
+    bar.style.width=(timeLeft/90*100)+"%";
+    if(timeLeft<=0){
+      clearInterval(timerInterval);
+      alert("زمان شما تمام شد!");
+      window.location.href="index.html";
+    }
+  },1000);
+}
+</script>
+</body>
+</html>
